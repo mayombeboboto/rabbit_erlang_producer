@@ -2,17 +2,16 @@
 %% @doc producer public API
 %% @end
 %%%-------------------------------------------------------------------
-
 -module(producer_app).
-
+%%%-------------------------------------------------------------------
 -behaviour(application).
-
+%%%-------------------------------------------------------------------
 -export([start/2, stop/1]).
-
+%%%-------------------------------------------------------------------
+-spec start(normal, []) -> {ok, pid()}.
 start(_StartType, _StartArgs) ->
     producer_sup:start_link().
 
+-spec stop(term()) -> no_return().
 stop(_State) ->
     ok.
-
-%% internal functions

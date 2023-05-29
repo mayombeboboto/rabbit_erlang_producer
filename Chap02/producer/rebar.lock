@@ -4,16 +4,12 @@
   {pkg,<<"credentials_obfuscation">>,<<"3.2.0">>},
   2},
  {<<"jsx">>,{pkg,<<"jsx">>,<<"3.1.0">>},0},
- {<<"quickrand">>,
-  {git,"https://github.com/okeuday/quickrand.git",
-       {ref,"e74fd9d7a755be951cc8d07db370e7df7dc0652d"}},
-  1},
  {<<"rabbit_common">>,{pkg,<<"rabbit_common">>,<<"3.11.13">>},1},
  {<<"recon">>,{pkg,<<"recon">>,<<"2.5.3">>},2},
  {<<"thoas">>,{pkg,<<"thoas">>,<<"1.0.0">>},2},
  {<<"uuid">>,
-  {git,"https://github.com/okeuday/uuid.git",
-       {ref,"8e10edd6ae77a055b4e15a98f98f9870a2cce635"}},
+  {git,"https://github.com/avtobiff/erlang-uuid.git",
+       {ref,"cb02a2039a9b29dd2eef0446039c9c6e164df9ef"}},
   0}]}.
 [
 {pkg_hash,[
