@@ -43,9 +43,10 @@ handle_call(_Msg, _From, State) ->
 
 handle_cast({publish, Payload}, State=#{ channel := Channel }) ->
     Headers = [{<<"company">>, binary, <<"StarTech">>}],
+
     Publish =#'basic.publish'{ mandatory=true,
                                exchange=?EXCHANGE,
-                               routing_key= <<"Unknown RK">> },
+                               routing_key=?ROUTING_KEY },
     Props = #'P_basic'{ delivery_mode = ?PERSISTENT_DELIVERY,
                         content_type = ?CONTENT_TYPE,
                         message_id = generate_msg_id(),
@@ -61,6 +62,9 @@ handle_info(init, _State) ->
     % This makes the current process responsible for unrouted messages
     % Handling `basic.retrun`.
     amqp_channel:register_return_handler(Channel, self()),
+
+    amqp_channel:register_confirm_handler(Channel, self()),
+    amqp_channel:call(Channel, #'confirm.select'{ nowait=true }),
 
     ExchangeDeclare = #'exchange.declare'{ exchange = ?EXCHANGE },
     #'exchange.declare_ok'{} = amqp_channel:call(Channel, ExchangeDeclare),
